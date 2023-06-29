@@ -23,7 +23,7 @@ void printSudokuBoard(int board[ROWS][COLUMNS])
 
         if ((row + 1) % 3 == 0 && row != ROWS - 1)
         {
-            printf("---------------------\n");
+            printf("--------------\n");
         }
     }
 }
