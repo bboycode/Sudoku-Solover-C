@@ -1,57 +1,74 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#define ROWS 9
+#define COLUMNS 9
+
+void printSudokuBoard(int board[ROWS][COLUMNS])
+{
+    for (int row = 0; row < ROWS; row++)
+    {
+
+        for (int col = 0; col < COLUMNS; col++)
+        {
+
+            printf("%d", board[row][col]);
+
+                if (((col + 1) % 3 == 0 && col != COLUMNS - 1))
+            {
+                printf("| ");
+            }
+        }
+        printf("\n");
+
+        if ((row + 1) % 3 == 0 && row != ROWS - 1)
+        {
+            printf("---------------------\n");
+        }
+    }
+}
+
 int main(int argc, char *argv[])
-{	
-	int ROWS = 9;
-	int COLUMNS = 9;
+{
 
-	int board[COLUMNS][ROWS];
+    int board[ROWS][COLUMNS];
 
-	FILE* file = fopen("test.txt", "r");
-	
-	if (file == NULL) {
-		printf("File could not be used.\n");
-		return 1;
-	}
-	
-	int row = 0; 
+    FILE *file = fopen(argv[1], "r");
 
-	while (!feof(file)) {
+    if (file == NULL)
+    {
+        printf("File could not be opened.\n");
+        return 1;
+    }
 
-		if (ferror(file)) {
+    int row = 0;
+    int column = 0;
 
-			printf("Error reading file.\n");
-			return 1;
-		}
-		
-		for (int i =0; i < COLUMNS; i++) {
+    // Reads from text file.
+    while (row < ROWS && !feof(file))
+    {
+        if (ferror(file))
+        {
+            printf("Error reading file.\n");
+            return 1;
+        }
 
-			if(fscanf(file, "%n" , &board[row][i]) == EOF){
-				break;
-			}
-		
-		}
+        if (fscanf(file, "%1d", &board[row][column]) == EOF)
+        {
+            break;
+        }
 
-		row ++; 
-		
-		if (row == ROWS) {
-			break;
-		}
-	}
+        column++;
+        if (column == COLUMNS)
+        {
+            column = 0;
+            row++;
+        }
+    }
 
-	fclose(file);
+    fclose(file);
 
-	for (int i = 0 ; i < ROWS; i++) {
-		
-		for (int j = 0; j < COLUMNS; j++) {
+    printSudokuBoard(board);
 
-			printf("%d", board[i][j]);
-		
-		}
-
-		printf("\n");
-
-	}
-
-	return 0;
+    return 0;
 }
