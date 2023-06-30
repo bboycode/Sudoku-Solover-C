@@ -28,6 +28,76 @@ void printSudokuBoard(int board[ROWS][COLUMNS])
     }
 }
 
+int checkRow(int Board[ROWS][COLUMNS], int row, int col, int num){
+    
+    for (int i = 0; i < 9; i++) {
+
+        if(num == Board[row][i] && i != col){
+            
+            return 1;
+        }
+    
+    }
+
+    return 0;
+}
+
+int checkColumn(int Board[ROWS][COLUMNS], int row, int col, int num){
+
+    for (int i = 0; i< 9; i++) {
+        
+        if(num == Board[i][col] && i != row){
+
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+int checkBox(int Board[ROWS][COLUMNS], int row, int col, int num){
+
+    int startRow = (row/3) * 3;
+    int startCol = (col/3) * 3; 
+
+    for (int i = startRow; i < startRow +3; i++) {
+        
+        for (int j = startCol; j < startCol +3; j++) {
+            
+            if(num == Board[i][j] && i != row && j != col ){
+
+                return 1; 
+
+            }
+            
+        }
+    }
+
+    return 0;
+}
+
+int isValid(int Board[ROWS][COLUMNS], int row, int col, int num){
+    
+
+    if(checkRow(Board, row, col, num) == 1 || checkColumn(Board, row, col, num) == 1 || checkBox(Board, row, col, num)){
+
+        return 1;
+    }
+
+    return 0;
+}
+
+void solve(int Board[ROWS][COLUMNS]){
+    
+   int nums[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    for (int nums = 0;nums ; inc-expression) {
+    
+    }
+
+    
+}
+
 int main(int argc, char *argv[])
 {
 
