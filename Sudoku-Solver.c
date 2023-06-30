@@ -90,8 +90,24 @@ int isValid(int Board[ROWS][COLUMNS], int row, int col, int num){
 void solve(int Board[ROWS][COLUMNS]){
     
    int nums[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    
+    int lengthOfNums = sizeof(nums)/sizeof(nums[0]); 
 
-    for (int nums = 0;nums ; inc-expression) {
+    for (int num = 0;num < lengthOfNums ; num ++) {
+
+        for (int row = 0; row < ROWS; row++) {
+
+            for (int col = 0 ; col < COLUMNS; col ++) {
+
+                if(Board[row][col] == 0 ){
+
+                    Board[row][col] = nums[num]; 
+
+                }
+            
+            }
+        
+        }
     
     }
 
@@ -137,6 +153,12 @@ int main(int argc, char *argv[])
     }
 
     fclose(file);
+
+    printSudokuBoard(board);
+
+    printf("\n");
+
+    solve(board);
 
     printSudokuBoard(board);
 
