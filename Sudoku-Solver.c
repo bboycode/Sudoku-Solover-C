@@ -160,6 +160,8 @@ int main(int argc, char *argv[])
 
     solve(board);
 
+    printf("------------------------------------ Solved Board ------------------------------------\n");
+
     printSudokuBoard(board);
 
     return 0;
